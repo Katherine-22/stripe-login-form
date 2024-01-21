@@ -128,8 +128,7 @@ svg.stripe_logo {
 }
 
 .right_column {
-  width: 540px;
-  min-width: 540px;
+  max-width: 540px;
 }
 
 .form_container {
@@ -147,7 +146,6 @@ svg.stripe_logo {
   }
 
   .right_column_wrapper {
-    width: 382px;
     margin-inline: auto;
   }
 
