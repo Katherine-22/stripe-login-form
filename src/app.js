@@ -104,3 +104,28 @@ userEmail.addEventListener("focus", () => {
   emailValid = emailPattern.test(userEmail.value);
   isFormValid();
 });
+
+//Check if user agrees with the terms
+const agreeCheckbox = document.querySelector("#policy_agree");
+
+agreeCheckbox.addEventListener("change", () => {
+  isFormValid();
+  console.log(agreeCheckbox.checked);
+});
+
+fullName.addEventListener("input", isFormValid);
+//checking the form completion
+
+function isFormValid() {
+  // let emailValid = emailPattern.test(userEmail.value);
+  let nameValid = fullName.value.trim().length > 0;
+  let checkBoxValid = agreeCheckbox.checked;
+
+  if (emailValid && nameValid && passValid && checkBoxValid) {
+    submitBtn.removeAttribute("disabled");
+    submitBtn.classList.add("active");
+  } else {
+    submitBtn.setAttribute("disabled", "disabled");
+    submitBtn.classList.remove("active");
+  }
+}
