@@ -151,3 +151,14 @@ document.onclick = function (event) {
 };
 
 inputCountry.value = liCountries[0].textContent.trim();
+
+liCountries.forEach((country) => {
+  country.addEventListener("click", () => {
+    inputCountry.value = country.innerText;
+
+    let newLi = country.cloneNode(true);
+
+    selectedElem.replaceChild(newLi, selectedElem.children[0]);
+    listBox.classList.remove("open_select");
+  });
+});
