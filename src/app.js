@@ -162,3 +162,17 @@ liCountries.forEach((country) => {
     listBox.classList.remove("open_select");
   });
 });
+
+searchInp.addEventListener("keyup", () => {
+  let searchVal = searchInp.value.toLowerCase();
+  let arr = [...liCountries];
+  let result = arr.filter((item) => {
+    return item.innerText.toLowerCase().startsWith(searchVal);
+  });
+  console.dir(result[0]);
+
+  options.innerHTML = "";
+  result.forEach((item) => {
+    options.append(item);
+  });
+});
