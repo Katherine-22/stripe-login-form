@@ -19,3 +19,60 @@ window.addEventListener("resize", () => {
     valuesContainer.prepend(logo);
   }
 });
+
+// Password events
+let passValid = false;
+const passwordPattern = /.{10,}/;
+
+const msg = document.querySelector(".pass_msg");
+
+const clue = document.createElement("p");
+clue.innerHTML =
+  "Your password needs to be at least 10 characters. Include multiple words and phrases to make it more secure.";
+
+const error = document.createElement("p");
+error.innerHTML =
+  "<img src='img/warning_sign.svg'/> Your password is not strong enough. Your password must be at least 10 characters.";
+
+const success = document.createElement("p");
+success.innerHTML =
+  "<img src='img/success.svg'/> Nice work. Your password is good.";
+
+passwordInput.addEventListener("focus", () => {
+  if (passwordInput.value.length === 0 || passwordInput.value.length < 10) {
+    msg.innerHTML = "";
+    msg.appendChild(clue);
+    passwordContainer.classList.remove("error");
+  }
+});
+
+passwordInput.addEventListener("input", () => {
+  if (passwordInput.value.length >= 10) {
+    validatePass(passwordInput);
+  } else {
+    msg.innerHTML = "";
+    msg.appendChild(clue);
+    passwordContainer.classList.remove("error");
+    passValid = false;
+    isFormValid();
+  }
+});
+
+passwordInput.addEventListener("blur", () => {
+  if (passwordInput.value.length === 0) msg.innerHTML = "";
+  else {
+    validatePass(passwordInput);
+  }
+});
+
+function validatePass(userInput) {
+  if (passwordPattern.test(userInput.value) === false) {
+    msg.replaceChild(error, msg.childNodes[0]);
+    passwordContainer.classList.add("error");
+  } else {
+    msg.replaceChild(success, msg.childNodes[0]);
+    passwordContainer.classList.remove("error");
+    passValid = true;
+    isFormValid();
+  }
+}
