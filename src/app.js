@@ -129,3 +129,25 @@ function isFormValid() {
     submitBtn.classList.remove("active");
   }
 }
+
+// Country selection area
+const selectedElem = document.querySelector(".selected_element"); //button displaying chosen country
+const listBox = document.querySelector(".countries"); //div with search input and ul with countries
+const options = document.querySelector(".options"); // ul with countries
+const liCountries = document.querySelectorAll(".options li"); //array with all countries
+const inputCountry = document.querySelector("#country"); //hidden input for a country
+const userCountry = document.querySelector(".user_country"); // div with chosen country and svg
+let searchInp = document.querySelector(".search_country"); // input field for searching a country
+
+selectedElem.addEventListener("click", (e) => {
+  e.preventDefault();
+  listBox.classList.toggle("open_select");
+});
+
+document.onclick = function (event) {
+  if (!listBox.contains(event.target) && !selectedElem.contains(event.target)) {
+    listBox.classList.remove("open_select");
+  }
+};
+
+inputCountry.value = liCountries[0].textContent.trim();
