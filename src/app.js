@@ -76,3 +76,31 @@ function validatePass(userInput) {
     isFormValid();
   }
 }
+
+//Email validation
+const userEmail = document.querySelector("#email");
+const emailError = document.querySelector(".email_error");
+const emailField = document.querySelector(".email_field");
+
+const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i;
+let emailValid = false;
+
+userEmail.addEventListener("change", () => {
+  if (emailPattern.test(userEmail.value) === false)
+    emailField.classList.add("error");
+  else {
+    emailField.classList.remove("error");
+    emailValid = true;
+  }
+});
+
+userEmail.addEventListener("input", () => {
+  emailValid = emailPattern.test(userEmail.value);
+  isFormValid();
+});
+
+userEmail.addEventListener("focus", () => {
+  emailField.classList.remove("error");
+  emailValid = emailPattern.test(userEmail.value);
+  isFormValid();
+});
