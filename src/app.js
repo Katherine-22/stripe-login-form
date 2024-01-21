@@ -176,3 +176,11 @@ searchInp.addEventListener("keyup", () => {
     options.append(item);
   });
 });
+
+selectedElem.addEventListener("click", () => {
+  searchInp.value = "";
+  searchInp.focus();
+  liCountries.forEach((country) => {
+    options.append(country);
+  });
+});
