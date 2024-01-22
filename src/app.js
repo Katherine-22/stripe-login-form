@@ -10,16 +10,6 @@ const fullName = document.querySelector("#user_name");
 
 const submitBtn = document.querySelector(".btn_submit");
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth <= 900) {
-    formWrapper.appendChild(footer);
-    formWrapper.prepend(logo);
-  } else {
-    valuesContainer.appendChild(footer);
-    valuesContainer.prepend(logo);
-  }
-});
-
 // Password events
 let passValid = false;
 const passwordPattern = /.{10,}/;
@@ -184,3 +174,15 @@ selectedElem.addEventListener("click", () => {
     options.append(country);
   });
 });
+
+window.onload = () => {
+  if (window.innerWidth <= 900) {
+    console.log(window.innerWidth);
+    formWrapper.appendChild(footer);
+    formWrapper.prepend(logo);
+  } else {
+    console.log(window.innerWidth);
+    valuesContainer.appendChild(footer);
+    valuesContainer.prepend(logo);
+  }
+};
